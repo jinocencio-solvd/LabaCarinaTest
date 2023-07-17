@@ -1,0 +1,8 @@
+{
+  "id": 101,
+  "title": "Apple Vision Pro",
+  <#if description??>
+    "description": "${description}",
+  </#if>
+  "price": "${price}"
+}
