@@ -53,8 +53,10 @@ public class APITest implements IAbstractTest {
         PostProductMethod api = new PostProductMethod();
         api.setProperties("api/products/product.properties");
         Response res = api.callAPI();
-        assertEquals(res.jsonPath().getString("title"), "Apple Vision Pro");
-        assertEquals(res.jsonPath().getString("price"), "3499");
+        String expectedTitle = res.jsonPath().getString("title");
+        assertEquals(expectedTitle, "Apple Vision Pro", "The product title does not match");
+        String expectedPrice = res.jsonPath().getString("price");
+        assertEquals(expectedPrice, "3499", "The product price does not match");
     }
 
     @Test()
