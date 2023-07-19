@@ -13,7 +13,7 @@ import com.zebrunner.carina.utils.config.Configuration;
 @RequestTemplatePath(path = "api/products/put/req.json")
 @ResponseTemplatePath(path = "api/products/put/res.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
-public class PutProductMethod  extends AbstractApiMethodV2 {
+public class PutProductMethod extends AbstractApiMethodV2 {
 
     public PutProductMethod() {
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
