@@ -19,5 +19,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
+      - name: Run Selenium Server
+        run: nohup java -jar $SELENIUM_JAR_PATH standalone &
+
       - name: Build with Maven
         run: mvn -B validate test --file pom.xml
