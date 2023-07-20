@@ -8,12 +8,14 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
-@Endpoint(url = "${base_url}/products/1", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/products/get_one/res.json")
+@Endpoint(url = "${base_url}/products/${product_id}", methodType = HttpMethodType.GET)
+@ResponseTemplatePath(path = "api/products/get_one/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetOneProductMethod extends AbstractApiMethodV2 {
 
-    public GetOneProductMethod() {
+    public GetOneProductMethod(String productId) {
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
+        replaceUrlPlaceholder("product_id", productId);
+
     }
 }

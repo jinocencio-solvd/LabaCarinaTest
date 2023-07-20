@@ -8,6 +8,7 @@ import api.PutProductMethod;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import com.zebrunner.carina.utils.R;
 import io.restassured.response.Response;
 import java.lang.invoke.MethodHandles;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -23,10 +24,10 @@ public class APITest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "jinocencio-solvd")
     public void testGetOneProduct() {
-        GetOneProductMethod api = new GetOneProductMethod();
-        api.setProperties("api/products/product.properties");
+        GetOneProductMethod api = new GetOneProductMethod(R.TESTDATA.get("product_id"));
+        api.setProperties("api/products/_product.properties");
         api.callAPIExpectSuccess();
-        api.validateResponseAgainstSchema("api/products/get_one/res.schema");
+        api.validateResponseAgainstSchema("api/products/get_one/rs.schema");
     }
 
     @Test()
@@ -35,14 +36,14 @@ public class APITest implements IAbstractTest {
         GetAllProductsMethod api = new GetAllProductsMethod();
         api.callAPIExpectSuccess();
         api.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        api.validateResponseAgainstSchema("api/products/get/res.schema");
+        api.validateResponseAgainstSchema("api/products/get/rs.schema");
     }
 
     @Test()
     @MethodOwner(owner = "jinocencio-solvd")
     public void testPostProductsWithProperties() {
         PostProductMethod api = new PostProductMethod();
-        api.setProperties("api/products/product.properties");
+        api.setProperties("api/products/_product.properties");
         api.callAPIExpectSuccess();
         api.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
     }
@@ -51,7 +52,7 @@ public class APITest implements IAbstractTest {
     @MethodOwner(owner = "jinocencio-solvd")
     public void testPostProductContent() {
         PostProductMethod api = new PostProductMethod();
-        api.setProperties("api/products/product.properties");
+        api.setProperties("api/products/_product.properties");
         Response res = api.callAPI();
         String expectedTitle = res.jsonPath().getString("title");
         assertEquals(expectedTitle, "Apple Vision Pro", "The product title does not match");
@@ -63,7 +64,7 @@ public class APITest implements IAbstractTest {
     @MethodOwner(owner = "jinocencio-solvd")
     public void testPostProductsWithPropertiesMissingField() {
         PostProductMethod api = new PostProductMethod();
-        api.setProperties("api/products/product.properties");
+        api.setProperties("api/products/_product.properties");
         api.removeProperty("description");
         api.callAPIExpectSuccess();
         api.validateResponse();
@@ -72,7 +73,7 @@ public class APITest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "jinocencio-solvd")
     public void testPutProducts() {
-        PutProductMethod api = new PutProductMethod();
+        PutProductMethod api = new PutProductMethod(R.TESTDATA.get("product_id"));
         api.callAPIExpectSuccess();
         api.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
 
@@ -81,7 +82,7 @@ public class APITest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "jinocencio-solvd")
     public void testDeleteProducts() {
-        DeleteProductMethod api = new DeleteProductMethod();
+        DeleteProductMethod api = new DeleteProductMethod(R.TESTDATA.get("product_id"));
         api.callAPIExpectSuccess();
         api.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
     }
