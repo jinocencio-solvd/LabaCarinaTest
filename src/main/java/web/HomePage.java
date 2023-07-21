@@ -11,9 +11,6 @@ import web.components.ProductCategory;
 
 public class HomePage extends AbstractPage {
 
-    @FindBy(xpath = "//a[@id = 'login2']")
-    private ExtendedWebElement loginNavButton;
-
     @FindBy(xpath = "//button[@id='next2']")
     private ExtendedWebElement nextButton;
 
@@ -23,8 +20,14 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@class='card-block']")
     private ExtendedWebElement cardLoadedMarker;
 
+    @FindBy(xpath = "//a[@id = 'login2']")
+    private ExtendedWebElement loginNavButton;
+
     @FindBy(xpath = "//a[@id='nameofuser']")
     private ExtendedWebElement nameOfUserNav;
+
+    @FindBy(xpath = "//a[@id = 'logout2']")
+    private ExtendedWebElement logoutNavButton;
 
     @FindBy(xpath = "//div[contains(@class, 'card ')]")
     private List<ProductCard> productList;
@@ -38,15 +41,20 @@ public class HomePage extends AbstractPage {
         setUiLoadedMarker(cardLoadedMarker);
     }
 
+    public boolean isLoginNavButtonDisplayed() {
+        waitForJSToLoad();
+        return loginNavButton.isElementPresent();
+    }
+
     public void clickLoginNavButton() {
         loginNavButton.click();
     }
 
-    public void clickNextButton() throws InterruptedException {
+    public void clickNextButton() {
         nextButton.click();
     }
 
-    public void clickPrevButton() throws InterruptedException {
+    public void clickPrevButton() {
         prevButton.click();
     }
 
@@ -55,6 +63,14 @@ public class HomePage extends AbstractPage {
         return nameOfUserNav.isElementPresent();
     }
 
+    public boolean isLogoutDisplayed() {
+        waitForJSToLoad();
+        return logoutNavButton.isElementPresent();
+    }
+
+    public void clickLogoutButton() {
+        logoutNavButton.click();
+    }
 
     public List<ProductCard> getProductList() {
         waitForJSToLoad();
@@ -69,7 +85,5 @@ public class HomePage extends AbstractPage {
             }
         }
     }
-
-
 
 }

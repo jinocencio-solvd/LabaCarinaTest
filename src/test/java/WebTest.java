@@ -12,7 +12,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import web.HomePage;
 import web.components.LoginModal;
-import web.components.ProductCategory;
 
 public class WebTest implements IAbstractTest {
 
@@ -86,4 +85,17 @@ public class WebTest implements IAbstractTest {
         loginModal.clickLoginButton();
         assertTrue(homePage.isUsernameDisplayed());
     }
+
+    @Test
+    public void testLogoutModal() {
+        homePage.clickLoginNavButton();
+        LoginModal loginModal = new LoginModal(driver);
+        loginModal.typeUsername(R.TESTDATA.get("user"));
+        loginModal.typePassword(R.TESTDATA.get("password"));
+        loginModal.clickLoginButton();
+        assertTrue(homePage.isLogoutDisplayed());
+        homePage.clickLogoutButton();
+        assertTrue(homePage.isLoginNavButtonDisplayed());
+    }
+
 }
