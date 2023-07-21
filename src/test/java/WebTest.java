@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import web.HomePage;
+import web.components.ProductCategory;
 
 public class WebTest implements IAbstractTest {
 
@@ -41,20 +42,36 @@ public class WebTest implements IAbstractTest {
 
     @Test
     public void gridNavNextTest() throws InterruptedException {
-        int numProductsBefore = homePage.getNumProductsDisplayed();
+        int numProductsBefore = homePage.getProductList().size();
         homePage.clickNextButton();
-        assertNotEquals(numProductsBefore, homePage.getNumProductsDisplayed(),
+        assertNotEquals(numProductsBefore, homePage.getProductList().size(),
             "Number of products should not be the same");
     }
 
     @Test
     public void gridNavPrevTest() throws InterruptedException {
-        int numProductsInit = homePage.getNumProductsDisplayed();
+        int numProductsInit = homePage.getProductList().size();
         homePage.clickNextButton();
         homePage.clickPrevButton();
-        assertEquals(numProductsInit, homePage.getNumProductsDisplayed(),
+        assertEquals(numProductsInit, homePage.getProductList().size(),
             "Number of products should be the same");
-
     }
 
+    @Test
+    public void selectPhonesCategoryTest() {
+        homePage.clickCategoryByTitle("Phones");
+        assertEquals(homePage.getProductList().size(), 7);
+    }
+
+    @Test
+    public void selectLaptopsCategoryTest() {
+        homePage.clickCategoryByTitle("Laptops");
+        assertEquals(homePage.getProductList().size(), 6);
+    }
+
+    @Test
+    public void selectMonitorsCategoryTest() {
+        homePage.clickCategoryByTitle("Monitors");
+        assertEquals(homePage.getProductList().size(), 2);
+    }
 }
