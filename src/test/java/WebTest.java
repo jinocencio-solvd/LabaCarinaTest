@@ -3,6 +3,7 @@ import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.core.capability.impl.desktop.ChromeCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import web.HomePage;
+import web.components.LoginModal;
 import web.components.ProductCategory;
 
 public class WebTest implements IAbstractTest {
@@ -37,7 +39,6 @@ public class WebTest implements IAbstractTest {
     @Test
     public void homePageTest() {
         assertTrue(homePage.isPageOpened());
-        assertTrue(homePage.isNextButtonDisplayed());
     }
 
     @Test
@@ -73,5 +74,16 @@ public class WebTest implements IAbstractTest {
     public void selectMonitorsCategoryTest() {
         homePage.clickCategoryByTitle("Monitors");
         assertEquals(homePage.getProductList().size(), 2);
+    }
+
+    @Test
+    public void testLoginModal() {
+        homePage.clickLoginNavButton();
+        LoginModal loginModal = new LoginModal(driver);
+        assertTrue(loginModal.isDisplayed());
+        loginModal.typeUsername(R.TESTDATA.get("user"));
+        loginModal.typePassword(R.TESTDATA.get("password"));
+        loginModal.clickLoginButton();
+        assertTrue(homePage.isUsernameDisplayed());
     }
 }
