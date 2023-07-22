@@ -3,9 +3,13 @@ package web;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import web.components.LoginModal;
+import web.components.NavBar;
 import web.components.ProductCard;
 import web.components.ProductCategory;
 
@@ -20,15 +24,6 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@class='card-block']")
     private ExtendedWebElement cardLoadedMarker;
 
-    @FindBy(xpath = "//a[@id = 'login2']")
-    private ExtendedWebElement loginNavButton;
-
-    @FindBy(xpath = "//a[@id='nameofuser']")
-    private ExtendedWebElement nameOfUserNav;
-
-    @FindBy(xpath = "//a[@id = 'logout2']")
-    private ExtendedWebElement logoutNavButton;
-
     @FindBy(xpath = "//div[contains(@class, 'card ')]")
     private List<ProductCard> productList;
 
@@ -41,15 +36,6 @@ public class HomePage extends AbstractPage {
         setUiLoadedMarker(cardLoadedMarker);
     }
 
-    public boolean isLoginNavButtonDisplayed() {
-        waitForJSToLoad();
-        return loginNavButton.isElementPresent();
-    }
-
-    public void clickLoginNavButton() {
-        loginNavButton.click();
-    }
-
     public void clickNextButton() {
         nextButton.click();
     }
@@ -58,30 +44,28 @@ public class HomePage extends AbstractPage {
         prevButton.click();
     }
 
-    public boolean isUsernameDisplayed() {
-        waitForJSToLoad();
-        return nameOfUserNav.isElementPresent();
+    public List<ProductCard> getDisplayedProducts() {
+        waitForJSToLoad(250L);
+        return new ArrayList<>(productList);
     }
 
-    public boolean isLogoutDisplayed() {
-        waitForJSToLoad();
-        return logoutNavButton.isElementPresent();
+    public LoginModal openLoginModal() {
+        return new NavBar(driver).openLoginNavButton();
     }
 
-    public void clickLogoutButton() {
-        logoutNavButton.click();
+    public NavBar getNavBar() {
+        return new NavBar(driver);
     }
 
-    public List<ProductCard> getProductList() {
-        waitForJSToLoad();
-        return productList;
+    public List<String> getDisplayedProductTitles() {
+        return getDisplayedProducts().stream().map(ProductCard::readTitle)
+            .collect(Collectors.toList());
     }
 
     public void clickCategoryByTitle(String title) {
         for (ProductCategory c : categories) {
             if (c.readTitle().equalsIgnoreCase(title)) {
                 c.clickCategoryButton();
-                waitForJSToLoad();
             }
         }
     }
