@@ -29,7 +29,7 @@ Requirements:
 1. Automate web scenarios using Carina and Page Object Pattern
 
 | Feature owner (author) | # | Name                      | Preconditions                          | Step # | Description                          | Expected result                           |
-|------------------------|---|---------------------------|-----------------------------------------|--------|--------------------------------------|-------------------------------------------|
+|:-----------------------|:---:|:--------------------------|:----------------------------------------|:------:|:-------------------------------------|:------------------------------------------|
 | jinocencio-solvd       | 1 | Test pagination Feature   | Page is opened and JS is loaded        | 1      | Products are loaded                 | Have an ability to click the next button |
 |                        |   |                           |                                         | 2      | Click the next button              | Products displayed are different          |
 |                        |   |                           |                                         | 3      | Click the previous button          | Products displayed are same as first paginated page |
