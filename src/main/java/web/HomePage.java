@@ -79,7 +79,4 @@ public class HomePage extends AbstractPage {
         return new ProductCard(driver, sc);
     }
 
-//    public ProductPage openProductPageByName(String name){
-//        return new ProductPage(driver).
-//    }
 }
