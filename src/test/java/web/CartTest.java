@@ -27,7 +27,7 @@ public class CartTest extends AbstractWebTest {
     @TestPriority(Priority.P1)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testAddToCart(String productTitleToAdd) {
-        // Add product to card
+        // Add product to cart
         ProductCard productCard = homePage.getProductCardByTitle(productTitleToAdd);
         ProductPage productPage = productCard.openProductLink();
         productPage.assertPageOpened();
@@ -40,9 +40,9 @@ public class CartTest extends AbstractWebTest {
 
         // Get added cart product and compare products by title
         List<CartProduct> cartProducts = cartPage.getProductsInCart();
-//        CartProduct addedCartProduct = cartProducts.get(0);
         CartProduct addedCartProduct = null;
         for (CartProduct cartProduct : cartProducts) {
+            // checks if productTitleToAdd is displayed in cart
             if (cartProduct.getCartProductTitle(productTitleToAdd) != null) {
                 addedCartProduct = cartProduct;
                 break;
