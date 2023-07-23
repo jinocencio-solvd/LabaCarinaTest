@@ -4,19 +4,29 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import web.CartPage;
 
 public class NavBar extends AbstractUIObject {
 
     @FindBy(xpath = "//a[@id = 'login2']")
     private ExtendedWebElement loginNavButton;
 
-    @FindBy(xpath = "//a[@id='nameofuser']")
+    @FindBy(xpath = "//a[@id = 'nameofuser']")
     private ExtendedWebElement nameOfUserNav;
+
+    @FindBy(xpath = "//a[@id = 'cartur']")
+    private ExtendedWebElement cartNavButton;
 
     @FindBy(xpath = "//a[@id = 'logout2']")
     private ExtendedWebElement logoutNavButton;
+
     public NavBar(WebDriver driver) {
         super(driver);
+    }
+
+    public CartPage openCartPage() {
+        cartNavButton.click();
+        return new CartPage(driver);
     }
 
     public boolean isLoginNavButtonDisplayed() {
@@ -29,16 +39,15 @@ public class NavBar extends AbstractUIObject {
     }
 
     public boolean isUsernameDisplayed() {
-//        waitForJSToLoad();
         return nameOfUserNav.isElementPresent();
     }
 
     public boolean isLogoutDisplayed() {
-//        waitForJSToLoad();
         return logoutNavButton.isElementPresent();
     }
 
     public void clickLogoutButton() {
         logoutNavButton.click();
     }
+
 }

@@ -6,6 +6,8 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import web.components.LoginModal;
@@ -70,4 +72,14 @@ public class HomePage extends AbstractPage {
         }
     }
 
+    public ProductCard getProductCardByTitle(String title) {
+        String xpath = String.format("//div[contains(@class, 'card ') and .//a[text()='%s']]",
+            title);
+        SearchContext sc = driver.findElement(By.xpath(xpath));
+        return new ProductCard(driver, sc);
+    }
+
+//    public ProductPage openProductPageByName(String name){
+//        return new ProductPage(driver).
+//    }
 }
