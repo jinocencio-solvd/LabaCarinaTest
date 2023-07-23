@@ -24,6 +24,7 @@ public abstract class AbstractWebTest implements IAbstractTest {
         homePage = new HomePage(driver);
         homePage.open();
         homePage.waitForJSToLoad();
+        homePage.assertPageOpened();
     }
 
 }

@@ -15,8 +15,8 @@
 
     <test name="web tests">
         <classes>
-            <class name="web.WebTest"/>
-            <class name="web.LoginTest"/>
+            <class name="web.HomePageTest"/>
+            <class name="web.AuthenticationTest"/>
             <class name="web.CartTest"/>
         </classes>
     </test>

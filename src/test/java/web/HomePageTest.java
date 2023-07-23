@@ -7,7 +7,6 @@ import static org.testng.Assert.assertTrue;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +14,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import web.components.ProductCard;
 
-public class WebTest extends AbstractWebTest {
+public class HomePageTest extends AbstractWebTest {
 
     @Test
     @TestPriority(Priority.P1)
@@ -59,7 +58,7 @@ public class WebTest extends AbstractWebTest {
         Set<List<ProductCard>> productSet = new HashSet<>();
         for (String category : categories) {
             homePage.clickCategoryByTitle(category);
-            productSet.add(new ArrayList<>(homePage.getDisplayedProducts()));
+            productSet.add(homePage.getDisplayedProducts());
         }
         assertEquals(productSet.size(), categories.length,
             "Each category should have a unique display of products");

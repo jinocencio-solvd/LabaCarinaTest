@@ -8,18 +8,18 @@ import org.openqa.selenium.support.FindBy;
 
 public class CartProduct extends AbstractUIObject {
 
-    @FindBy(xpath = "./td[1]") // no attrs in element
+    @FindBy(xpath = "./td[img]")
     private ExtendedWebElement productImage;
 
-    @FindBy(xpath = "./td[2]") // no attrs in element
-    private ExtendedWebElement productTitle;
+    @FindBy(xpath = "./td[text()='%s']")
+    private ExtendedWebElement cartProductTitle;
 
     public CartProduct(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public String getCartProductTitle() {
-        return productTitle.getText();
+    public String getCartProductTitle(String productTitle) {
+        return cartProductTitle.format(productTitle).getText();
     }
 
 }
