@@ -28,6 +28,8 @@ stable and reliable.
 Requirements:
 1. Automate web scenarios using Carina and Page Object Pattern
 
+**Tested Web Page:** [https://www.demoblaze.com/](https://www.demoblaze.com/)
+
 | Feature owner (author) | # | Name                      | Preconditions                          | Step # | Description                          | Expected result                           |
 |:-----------------------|:---:|:--------------------------|:----------------------------------------|:------:|:-------------------------------------|:------------------------------------------|
 | jinocencio-solvd       | 1 | Test pagination Feature   | Page is opened and JS is loaded        | 1      | Products are loaded                 | Have an ability to click the next button |
