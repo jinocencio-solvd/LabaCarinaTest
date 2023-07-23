@@ -2,6 +2,7 @@ package web;
 
 import static org.testng.Assert.assertEquals;
 
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import org.testng.annotations.DataProvider;
@@ -21,6 +22,7 @@ public class CartTest extends AbstractWebTest {
 
     @Test(dataProvider = "ProductsList")
     @TestPriority(Priority.P1)
+    @MethodOwner(owner = "jinocencio-solvd")
     public void testProductCard(String productTitle) {
         ProductCard pc = homePage.getProductCardByTitle(productTitle);
         ProductPage productPage = pc.openProductLink();

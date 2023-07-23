@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
 
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import java.util.ArrayList;
@@ -18,12 +19,14 @@ public class WebTest extends AbstractWebTest {
 
     @Test
     @TestPriority(Priority.P1)
+    @MethodOwner(owner = "jinocencio-solvd")
     public void testHomePage() {
         assertTrue(homePage.isPageOpened());
     }
 
     @Test
     @TestPriority(Priority.P2)
+    @MethodOwner(owner = "jinocencio-solvd")
     public void testProductNextPaginator() {
         int initDisplayedProductsSize = homePage.getDisplayedProducts().size();
         homePage.clickNextButton();
@@ -33,6 +36,7 @@ public class WebTest extends AbstractWebTest {
 
     @Test
     @TestPriority(Priority.P3)
+    @MethodOwner(owner = "jinocencio-solvd")
     public void testProductPrevPaginator() {
         int initDisplayedProductsSize = homePage.getDisplayedProducts().size();
         homePage.clickNextButton();
@@ -50,6 +54,7 @@ public class WebTest extends AbstractWebTest {
 
     @Test(dataProvider = "CategoriesList")
     @TestPriority(Priority.P4)
+    @MethodOwner(owner = "jinocencio-solvd")
     public void testCategoryFilter(String[] categories) {
         Set<List<ProductCard>> productSet = new HashSet<>();
         for (String category : categories) {

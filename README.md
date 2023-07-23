@@ -22,6 +22,40 @@ address issues early in the development cycle, ensuring that our code consistent
 expected standards. This approach helps to maintain code quality and ensures the project remains
 stable and reliable.
 
+## Iter-2: Carina-Web
+
+### Task
+Requirements:
+1. Automate web scenarios using Carina and Page Object Pattern
+
+| Feature owner (author) | # | Name                      | Preconditions                          | Step # | Description                          | Expected result                           |
+|------------------------|---|---------------------------|-----------------------------------------|--------|--------------------------------------|-------------------------------------------|
+| jinocencio-solvd       | 1 | Test pagination Feature   | Page is opened and JS is loaded        | 1      | Products are loaded                 | Have an ability to click the next button |
+|                        |   |                           |                                         | 2      | Click the next button              | Products displayed are different          |
+|                        |   |                           |                                         | 3      | Click the previous button          | Products displayed are same as first paginated page |
+|------------------------|---|---------------------------|-----------------------------------------|--------|--------------------------------------|-------------------------------------------|
+| jinocencio-solvd       | 2 | Test categories filter    | "Products are loaded                   | 1      | Click category "Phones"            | Products displayed are only phones       |
+|                        |   |                           | JS will load"                           | 2      | Click category "Laptops"           | Products displayed are only laptops      |
+|                        |   |                           |                                         | 3      | Click category "Monitors"          | Products displayed are only monitors     |
+|------------------------|---|---------------------------|-----------------------------------------|--------|--------------------------------------|-------------------------------------------|
+| jinocencio-solvd       | 3 | Test Login                | User is not logged in                   | 1      | Click login button on Nav          | Login modal is displayed                  |
+|                        |   |                           |                                         | 2      | Enter username                     | Username is entered in username field     |
+|                        |   |                           |                                         | 3      | Enter password                     | Password is entered in password field     |
+|                        |   |                           |                                         | 4      | Press modal login button           | Modal closes and username is displayed in Nav |
+|------------------------|---|---------------------------|-----------------------------------------|--------|--------------------------------------|-------------------------------------------|
+| jinocencio-solvd       | 4 | Test Logout               | User is logged in                      | 1      | Username is displayed in Nav       | Ability to click logout in Nav            |
+|                        |   |                           |                                         | 2      | Click logout button in Nav         | Username is cleared from Nav              |
+|                        |   |                           |                                         | 3      | Login feature restored             | User can log in                           |
+|------------------------|---|---------------------------|-----------------------------------------|--------|--------------------------------------|-------------------------------------------|
+| jinocencio-solvd       | 5 | Test Add To Cart          | "Products are loaded                   | 1      | Products are loaded                 | Ability to select a displayed product     |
+|                        |   |                           | JS will load"                           | 2      | Click the title link of product    | User is redirected to the product page    |
+|                        |   |                           |                                         | 3      | Product page is loaded              | "Add to cart" button is available         |
+|                        |   |                           |                                         | 4      | Press select add to cart            | An alert is created                       |
+|                        |   |                           |                                         | 5      | Accept alert                       | User remains on the product page          |
+|                        |   |                           |                                         | 6      | While on the product page,         | User is redirected to the cart page       |
+|                        |   |                           |                                         |        | select cart button on nav bar       | Cart page is loaded                       |
+|                        |   |                           |                                         | 7      | Cart page is loaded                 | Selected product is displayed on cart page |
+
 ## Iter-1: Carina-API
 
 ### Task
