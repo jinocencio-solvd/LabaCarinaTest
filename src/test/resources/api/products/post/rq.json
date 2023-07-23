@@ -1,0 +1,7 @@
+{
+  "title": "${title}",
+  <#if description??>
+    "description": "${description}",
+  </#if>
+  "price": "${price}"
+}
