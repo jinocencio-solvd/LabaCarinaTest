@@ -16,10 +16,10 @@ import web.components.ProductCategory;
 public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//button[@id='next2']")
-    private ExtendedWebElement nextButton;
+    private ExtendedWebElement nextPageButton;
 
     @FindBy(xpath = "//button[@id='prev2']")
-    private ExtendedWebElement prevButton;
+    private ExtendedWebElement prevPageButton;
 
     @FindBy(xpath = "//*[@class='card-block']")
     private ExtendedWebElement cardLoadedMarker;
@@ -40,11 +40,11 @@ public class HomePage extends AbstractPage {
     }
 
     public void clickNextButton() {
-        nextButton.click();
+        nextPageButton.click();
     }
 
     public void clickPrevButton() {
-        prevButton.click();
+        prevPageButton.click();
     }
 
     public List<ProductCard> getDisplayedProducts() {
@@ -53,7 +53,7 @@ public class HomePage extends AbstractPage {
     }
 
     public LoginModal openLoginModal() {
-        return new NavBar(driver).openLoginNavButton();
+        return new NavBar(driver).clickLoginButton();
     }
 
     public NavBar getNavBar() {
@@ -61,7 +61,7 @@ public class HomePage extends AbstractPage {
     }
 
     public List<String> getDisplayedProductTitles() {
-        return getDisplayedProducts().stream().map(ProductCard::readTitle)
+        return getDisplayedProducts().stream().map(ProductCard::getProductTitle)
             .collect(Collectors.toList());
     }
 
@@ -75,7 +75,7 @@ public class HomePage extends AbstractPage {
 
     public ProductCard getProductCardByTitle(String title) {
         return productCards.stream()
-            .filter(p -> p.readTitle().equals(title))
+            .filter(p -> p.getProductTitle().equals(title))
             .findFirst()
             .orElse(null);
     }

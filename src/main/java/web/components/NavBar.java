@@ -9,45 +9,45 @@ import web.CartPage;
 public class NavBar extends AbstractUIObject {
 
     @FindBy(xpath = "//a[@id = 'login2']")
-    private ExtendedWebElement loginNavButton;
+    private ExtendedWebElement loginButton;
 
     @FindBy(xpath = "//a[@id = 'nameofuser']")
-    private ExtendedWebElement nameOfUserNav;
+    private ExtendedWebElement nameOfUser;
 
     @FindBy(xpath = "//a[@id = 'cartur']")
-    private ExtendedWebElement cartNavButton;
+    private ExtendedWebElement cartButton;
 
     @FindBy(xpath = "//a[@id = 'logout2']")
-    private ExtendedWebElement logoutNavButton;
+    private ExtendedWebElement logoutButton;
 
     public NavBar(WebDriver driver) {
         super(driver);
     }
 
     public CartPage openCartPage() {
-        cartNavButton.click();
+        cartButton.click();
         return new CartPage(driver);
     }
 
-    public boolean isLoginNavButtonDisplayed() {
-        return loginNavButton.isElementPresent(250L);
+    public boolean isLoginButtonDisplayed() {
+        return loginButton.isElementPresent();
     }
 
-    public LoginModal openLoginNavButton() {
-        loginNavButton.click();
+    public LoginModal clickLoginButton() {
+        loginButton.click();
         return new LoginModal(driver);
     }
 
     public boolean isUsernameDisplayed() {
-        return nameOfUserNav.isElementPresent();
+        return nameOfUser.isElementPresent();
     }
 
-    public boolean isLogoutDisplayed() {
-        return logoutNavButton.isElementPresent();
+    public boolean isLogoutButtonDisplayed() {
+        return logoutButton.isElementPresent();
     }
 
     public void clickLogoutButton() {
-        logoutNavButton.click();
+        logoutButton.click();
     }
 
 }

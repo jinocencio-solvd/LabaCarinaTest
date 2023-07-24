@@ -1,6 +1,7 @@
 package web;
 
 import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
@@ -29,21 +30,21 @@ public class CartTest extends AbstractWebTest {
     public void testAddToCart(String productTitleToAdd) {
         // Add product to cart
         ProductCard productCard = homePage.getProductCardByTitle(productTitleToAdd);
-        ProductPage productPage = productCard.openProductLink();
+        ProductPage productPage = productCard.clickProductTitle();
         productPage.assertPageOpened();
         productPage.clickAddToCartButton();
 
         // Navigate to cart page
         NavBar navBar = productPage.getNavBar();
         CartPage cartPage = navBar.openCartPage();
-        cartPage.assertPageOpened();
+        assertTrue(cartPage.isPageOpened(), "Cart page is not opened.");
 
         // Get added cart product and compare products by title
         List<CartProduct> cartProducts = cartPage.getProductsInCart();
         CartProduct addedCartProduct = null;
         for (CartProduct cartProduct : cartProducts) {
             // checks if productTitleToAdd is displayed in cart
-            if (cartProduct.getCartProductTitle(productTitleToAdd) != null) {
+            if (cartPage.isProductDisplayed(productTitleToAdd)) {
                 addedCartProduct = cartProduct;
                 break;
             }

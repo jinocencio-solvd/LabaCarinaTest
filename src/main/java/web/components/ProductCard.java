@@ -10,22 +10,19 @@ import web.ProductPage;
 
 public class ProductCard extends AbstractUIObject {
 
-    private final WebDriver driver;
-
     @FindBy(xpath = ".//a[contains(@class, 'hrefch')]")
     public ExtendedWebElement titleLink;
 
     public ProductCard(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
-        this.driver = driver;
     }
 
-    public ProductPage openProductLink() {
+    public ProductPage clickProductTitle() {
         titleLink.click();
         return new ProductPage(driver);
     }
 
-    public String readTitle() {
+    public String getProductTitle() {
         return titleLink.getText();
     }
 

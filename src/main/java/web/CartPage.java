@@ -27,4 +27,8 @@ public class CartPage extends AbstractPage {
         return productsInCart;
     }
 
+    public boolean isProductDisplayed(String productTitle) {
+        return productsInCart.stream().anyMatch(p -> p.getCartProductTitle(productTitle) != null);
+    }
+
 }

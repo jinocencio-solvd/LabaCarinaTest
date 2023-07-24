@@ -15,9 +15,27 @@
 
     <test name="web tests">
         <classes>
-            <class name="web.HomePageTest"/>
-            <class name="web.AuthenticationTest"/>
-            <class name="web.CartTest"/>
+            <class name="web.HomePageTest">
+                <methods>
+                    <include name="testHomePage"/>
+                    <include name="testProductNextPaginator"/>
+                    <include name="testProductPrevPaginator"/>
+                    <include name="dataProviderCategories"/>
+                    <include name="testCategoryFilter"/>
+                </methods>
+            </class>
+            <class name="web.AuthenticationTest">
+                <methods>
+                    <include name="testLoginModal"/>
+                    <include name="testLogout"/>
+                </methods>
+            </class>
+            <class name="web.CartTest">
+                <methods>
+                    <include name="testAddToCart"/>
+                    <include name="dataProviderProducts"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
