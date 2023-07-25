@@ -4,8 +4,6 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,7 +23,6 @@ public class CartTest extends AbstractWebTest {
     }
 
     @Test(dataProvider = "ProductsList")
-    @TestPriority(Priority.P1)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testAddToCart(String productTitleToAdd) {
         // Add product to cart
@@ -49,6 +46,8 @@ public class CartTest extends AbstractWebTest {
             }
         }
         assertNotNull(addedCartProduct, "Product is not displayed in the cart.");
+        assertTrue(addedCartProduct.getProductTextData().contains(productTitleToAdd),
+            " Product title is not the same as displayed.");
     }
 
 }
