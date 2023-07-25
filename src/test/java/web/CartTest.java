@@ -39,7 +39,6 @@ public class CartTest extends AbstractWebTest {
         CartPage cartPage = navBar.clickCartPage();
         assertTrue(cartPage.isPageOpened(), "Cart page is not opened.");
 
-        // Get added cart product and compare products by title
         List<CartProduct> cartProducts = cartPage.getProductsInCart();
         CartProduct addedCartProduct = null;
         for (CartProduct cartProduct : cartProducts) {

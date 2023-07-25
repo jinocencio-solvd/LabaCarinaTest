@@ -12,14 +12,14 @@ public class CartProduct extends AbstractUIObject {
     private ExtendedWebElement productImage;
 
     @FindBy(xpath = "./td[text()='%s']")
-    private ExtendedWebElement cartProductTitle;
+    private ExtendedWebElement cartProductTitleS;
 
     public CartProduct(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public String getCartProductTitle(String productTitle) {
-        return cartProductTitle.format(productTitle).getText();
+    public boolean isProductPresent(String productTitle) {
+        return cartProductTitleS.format(productTitle).isPresent();
     }
 
 }
