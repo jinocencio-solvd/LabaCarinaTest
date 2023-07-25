@@ -31,12 +31,12 @@ public class CartTest extends AbstractWebTest {
         // Add product to cart
         ProductCard productCard = homePage.getProductCardByTitle(productTitleToAdd);
         ProductPage productPage = productCard.clickProductTitle();
-        productPage.assertPageOpened();
+        assertTrue(productPage.isPageOpened(), "Product page is not opened");
         productPage.clickAddToCartButton();
 
         // Navigate to cart page
         NavBar navBar = productPage.getNavBar();
-        CartPage cartPage = navBar.openCartPage();
+        CartPage cartPage = navBar.clickCartPage();
         assertTrue(cartPage.isPageOpened(), "Cart page is not opened.");
 
         // Get added cart product and compare products by title

@@ -20,7 +20,7 @@ public class HomePageTest extends AbstractWebTest {
     @TestPriority(Priority.P1)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testHomePage() {
-        assertTrue(homePage.isPageOpened());
+        assertTrue(homePage.isPageOpened(), "The home page is not opened.");
     }
 
     @Test
@@ -28,7 +28,7 @@ public class HomePageTest extends AbstractWebTest {
     @MethodOwner(owner = "jinocencio-solvd")
     public void testProductNextPaginator() {
         int initDisplayedProductsSize = homePage.getDisplayedProducts().size();
-        homePage.clickNextButton();
+        homePage.clickNextPageButton();
         assertNotEquals(initDisplayedProductsSize, homePage.getDisplayedProducts().size(),
             "Product titles displayed should not be the same");
     }
@@ -38,10 +38,12 @@ public class HomePageTest extends AbstractWebTest {
     @MethodOwner(owner = "jinocencio-solvd")
     public void testProductPrevPaginator() {
         int initDisplayedProductsSize = homePage.getDisplayedProducts().size();
-        homePage.clickNextButton();
-        assertNotEquals(initDisplayedProductsSize, homePage.getDisplayedProducts().size());
-        homePage.clickPrevButton();
-        assertEquals(initDisplayedProductsSize, homePage.getDisplayedProducts().size());
+        homePage.clickNextPageButton();
+        assertNotEquals(initDisplayedProductsSize, homePage.getDisplayedProducts().size(),
+            "Page 2 should have a different number of products displayed.");
+        homePage.clickPrevPageButton();
+        assertEquals(initDisplayedProductsSize, homePage.getDisplayedProducts().size(),
+            "Page 1 should have the same number of products displayed.");
     }
 
     @DataProvider(name = "CategoriesList")

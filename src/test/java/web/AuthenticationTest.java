@@ -1,11 +1,13 @@
 package web;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
+import com.zebrunner.carina.utils.R;
 import org.testng.annotations.Test;
 import web.components.NavBar;
 import web.utils.AuthUtil;
@@ -17,7 +19,9 @@ public class AuthenticationTest extends AbstractWebTest {
     @MethodOwner(owner = "jinocencio-solvd")
     public void testLoginModal() {
         homePage = new AuthUtil().loginStandardUser();
-        assertTrue(homePage.getNavBar().isUsernameDisplayed(), "Username should be displayed.");
+        assertTrue(homePage.getNavBar().isUsernameDisplayed(), "Username is not displayed.");
+        assertEquals(homePage.getNavBar().getUsername(), R.TESTDATA.get("user"),
+            "The username does not match input username.");
     }
 
     @Test

@@ -24,7 +24,7 @@ public class NavBar extends AbstractUIObject {
         super(driver);
     }
 
-    public CartPage openCartPage() {
+    public CartPage clickCartPage() {
         cartButton.click();
         return new CartPage(driver);
     }
@@ -40,6 +40,11 @@ public class NavBar extends AbstractUIObject {
 
     public boolean isUsernameDisplayed() {
         return nameOfUser.isElementPresent();
+    }
+
+    public String getUsername() {
+        String welcomeUser = nameOfUser.getText();
+        return welcomeUser.split(" ")[1];
     }
 
     public boolean isLogoutButtonDisplayed() {

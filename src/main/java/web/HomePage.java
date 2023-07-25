@@ -39,11 +39,11 @@ public class HomePage extends AbstractPage {
         setUiLoadedMarker(cardLoadedMarker);
     }
 
-    public void clickNextButton() {
+    public void clickNextPageButton() {
         nextPageButton.click();
     }
 
-    public void clickPrevButton() {
+    public void clickPrevPageButton() {
         prevPageButton.click();
     }
 
@@ -67,7 +67,7 @@ public class HomePage extends AbstractPage {
 
     public void clickCategoryByTitle(String title) {
         for (ProductCategory c : categories) {
-            if (c.readTitle().equalsIgnoreCase(title)) {
+            if (c.getCategoryTitle().equalsIgnoreCase(title)) {
                 c.clickCategoryButton();
             }
         }

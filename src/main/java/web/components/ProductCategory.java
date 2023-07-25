@@ -14,7 +14,7 @@ public class ProductCategory extends AbstractUIObject {
         getRootExtendedElement().click();
     }
 
-    public String readTitle() {
+    public String getCategoryTitle() {
         return getRootExtendedElement().getText();
     }
 
