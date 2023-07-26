@@ -43,6 +43,10 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
         addToCartButton.format(name).click();
     }
 
+    public ExtendedWebElement getAddToCartButtonByName(String name){
+        return addToCartButton.format(name);
+    }
+
     public int getCartCount() {
         String strCount = cartCount.getText();
         return Integer.parseInt(strCount);
