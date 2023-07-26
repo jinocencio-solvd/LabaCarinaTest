@@ -5,8 +5,6 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
 import com.zebrunner.carina.utils.R;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,7 +17,7 @@ public class AuthenticationTest extends AbstractWebTest {
     @DataProvider(name = "StandardLogin")
     public Object[][] dataProviderProducts() {
         return new Object[][]{
-            { R.TESTDATA.get("user"),  R.TESTDATA.get("password")},
+            {R.TESTDATA.get("user"), R.TESTDATA.get("password")},
         };
     }
 
