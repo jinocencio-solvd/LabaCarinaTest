@@ -35,18 +35,7 @@ public class CartTest extends AbstractWebTest {
         NavBar navBar = productPage.getNavBar();
         CartPage cartPage = navBar.clickCartPage();
         assertTrue(cartPage.isPageOpened(), "Cart page is not opened.");
-
-        List<CartProduct> cartProducts = cartPage.getProductsInCart();
-        CartProduct addedCartProduct = null;
-        for (CartProduct cartProduct : cartProducts) {
-            // checks if productTitleToAdd is displayed in cart
-            if (cartPage.isProductDisplayed(productTitleToAdd)) {
-                addedCartProduct = cartProduct;
-                break;
-            }
-        }
-        assertNotNull(addedCartProduct, "Product is not displayed in the cart.");
-        assertTrue(addedCartProduct.getProductTextData().contains(productTitleToAdd),
+        assertTrue(cartPage.isProductDisplayed(productTitleToAdd),
             " Product title is not the same as displayed.");
     }
 
