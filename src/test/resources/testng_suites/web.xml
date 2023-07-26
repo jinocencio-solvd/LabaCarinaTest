@@ -1,0 +1,42 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Laba Carina Demo Tests" parallel="classes">
+
+    <parameter name="suiteOwner" value="jinocencio-solvd"/>
+    <parameter name="jenkinsJobName" value="Web-Task-Test"/>
+    <parameter name="jenkinsJobType" value="web"/>
+
+    <parameter name="jenkinsEnvironments" value="TASK"/>
+    <parameter name="jenkinsSlackChannels" value="slack-test,slack-test2"/>
+
+    <parameter name="jenkinsRegressionPipeline" value="api_regression, full_regression"/>
+    <parameter name="jenkinsRegressionScheduling_api_regression" value="H 2 * * *"/>
+
+    <parameter name="jenkinsJobExecutionMode" value="continue"/>
+
+    <test name="web tests">
+        <classes>
+            <class name="web.HomePageTest">
+                <methods>
+                    <include name="testHomePage"/>
+                    <include name="testProductNextPaginator"/>
+                    <include name="testProductPrevPaginator"/>
+                    <include name="dataProviderCategories"/>
+                    <include name="testCategoryFilter"/>
+                </methods>
+            </class>
+            <class name="web.AuthenticationTest">
+                <methods>
+                    <include name="testLoginModal"/>
+                    <include name="testLogout"/>
+                </methods>
+            </class>
+            <class name="web.CartTest">
+                <methods>
+                    <include name="testAddToCart"/>
+                    <include name="dataProviderProducts"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
