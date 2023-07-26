@@ -5,7 +5,6 @@ import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import web.components.LoginModal;
@@ -58,11 +57,6 @@ public class HomePage extends AbstractPage {
 
     public NavBar getNavBar() {
         return new NavBar(driver);
-    }
-
-    public List<String> getDisplayedProductTitles() {
-        return getDisplayedProducts().stream().map(ProductCard::getProductTitle)
-            .collect(Collectors.toList());
     }
 
     public void clickCategoryByTitle(String title) {

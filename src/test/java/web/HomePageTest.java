@@ -17,14 +17,12 @@ import web.components.ProductCard;
 public class HomePageTest extends AbstractWebTest {
 
     @Test
-    @TestPriority(Priority.P1)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testHomePage() {
         assertTrue(homePage.isPageOpened(), "The home page is not opened.");
     }
 
     @Test
-    @TestPriority(Priority.P2)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testProductNextPaginator() {
         int initDisplayedProductsSize = homePage.getDisplayedProducts().size();
@@ -34,7 +32,6 @@ public class HomePageTest extends AbstractWebTest {
     }
 
     @Test
-    @TestPriority(Priority.P3)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testProductPrevPaginator() {
         int initDisplayedProductsSize = homePage.getDisplayedProducts().size();
@@ -54,7 +51,6 @@ public class HomePageTest extends AbstractWebTest {
     }
 
     @Test(dataProvider = "CategoriesList")
-    @TestPriority(Priority.P4)
     @MethodOwner(owner = "jinocencio-solvd")
     public void testCategoryFilter(String[] categories) {
         Set<List<ProductCard>> productSet = new HashSet<>();

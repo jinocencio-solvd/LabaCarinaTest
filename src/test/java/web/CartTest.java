@@ -1,13 +1,10 @@
 package web;
 
-import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import java.util.List;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import web.components.CartProduct;
 import web.components.NavBar;
 import web.components.ProductCard;
 

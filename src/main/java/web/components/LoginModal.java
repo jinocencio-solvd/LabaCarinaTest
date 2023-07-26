@@ -1,9 +1,9 @@
 package web.components;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import web.HomePage;
 
 public class LoginModal extends ModalBase {
 
