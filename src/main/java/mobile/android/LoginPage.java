@@ -5,9 +5,9 @@ import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import mobile.common.LoginPageBase;
+import mobile.common.ProductsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import web.ProductPage;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
@@ -40,8 +40,10 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         return loginButton.isElementPresent();
     }
 
-    public ProductsPage clickLoginButton(){
+    @Override
+    public ProductsPageBase clickLoginButton() {
         loginButton.click();
-        return new ProductsPage(getDriver());
+        return initPage(ProductsPageBase.class);
     }
+
 }
