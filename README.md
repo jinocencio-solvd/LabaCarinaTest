@@ -22,6 +22,38 @@ address issues early in the development cycle, ensuring that our code consistent
 expected standards. This approach helps to maintain code quality and ensures the project remains
 stable and reliable.
 
+## Iter-3: Carina-Mobile(Android)
+
+### Task
+Requirements:
+1. Create and automate test cases for Android application.
+
+**Tested Web App:** [Sauce Labs Demo App](https://github.com/saucelabs/sample-app-mobile)
+
+| Feature Owner (Author) | # | Name                    | Preconditions                                         | Step # | Description                                | Expected Result                               |
+|:-----------------------|:---:|:--------------------------|:----------------------------------------|:------:|:-------------------------------------|:------------------------------------------|
+| jinocencio-solvd       | 1 | Test Login              | App is opened in login screen                        | 1      | Click Username                             | Ability to enter text in the username field  |
+|                        |   |                         |                                                       | 2      | Click Password                             | Ability to enter text in the password field  |
+|                        |   |                         |                                                       | 3      | Click Login Button                         | User is redirected to the products page      |
+| jinocencio-solvd       | 2 | Test Cart Count         | User is on products page                              | 1      | Click add to cart on one product           | Cart icon displays 1                         |
+|                        |   |                         |                                                       | 2      | Click add to cart on another product       | Cart icon displays 2                         |
+|                        |   |                         |  "n" is a number                                               | 3      | Click add to cart on "n" products          | Cart icon displays "n"                       |
+| jinocencio-solvd       | 3 | Test Cart Has Products  | User is on products page and cart icon displays "n"   | 1      | Click cart button                          | User is redirected to cart page              |
+|                        |   |                         |                                                       | 2      | Search through cart page for products in cart | Each product that accounts for "n" is present in the cart page |
+| jinocencio-solvd       | 4 | Test Sort by Name (A to Z) | User is on products page                         | 1      | Click sort button                          | Ability to select sort preference is displayed |
+|                        |   |                         |                                                       | 2      | Select Name (A to Z) button                | Sort preference is closed, and products page is displayed |
+|                        |   |                         |                                                       | 3      | User is directed back to Products page     | Products are displayed in alphabetical order |
+| jinocencio-solvd       | 5 | Test Sort by Name (Z to A) | User is on products page                         | 1      | Click sort button                          | Ability to select sort preference is displayed |
+|                        |   |                         |                                                       | 2      | Select Name (Z to A) button                | Sort preference is closed, and products page is displayed |
+|                        |   |                         |                                                       | 3      | User is directed back to Products page     | Products are displayed in reversed alphabetical order |
+| jinocencio-solvd       | 6 | Test Sort by Price (Low to High) | User is on products page                  | 1      | Click sort button                          | Ability to select sort preference is displayed |
+|                        |   |                         |                                                       | 2      | Select Price (Low to High) button          | Sort preference is closed, and products page is displayed |
+|                        |   |                         |                                                       | 3      | User is directed back to Products page     | Products are displayed in ascending order by price |
+| jinocencio-solvd       | 7 | Test Sort by Price (High to Low) | User is on products page                 | 1      | Click sort button                          | Ability to select sort preference is displayed |
+|                        |   |                         |                                                       | 2      | Select Price (High to Low) button         | Sort preference is closed, and products page is displayed |
+|                        |   |                         |                                                       | 3      | User is directed back to Products page     | Products are displayed in descending order by price |
+
+
 ## Iter-2: Carina-Web
 
 ### Task
