@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import mobile.common.CartPageBase;
 import mobile.common.ProductsPageBase;
 import mobile.common.SortProductsPageBase;
 import org.openqa.selenium.WebDriver;
@@ -68,9 +69,9 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
     }
 
     @Override
-    public CartPage clickCartButton() {
+    public CartPageBase clickCartButton() {
         cartButton.click();
-        return initPage(CartPage.class);
+        return initPage(CartPageBase.class);
     }
 
     @Override

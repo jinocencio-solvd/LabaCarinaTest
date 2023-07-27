@@ -1,7 +1,6 @@
 package mobile.common;
 
 import java.util.Map;
-import mobile.android.CartPage;
 import org.openqa.selenium.WebDriver;
 
 public abstract class ProductsPageBase extends AbstractCommonPage {
@@ -14,7 +13,7 @@ public abstract class ProductsPageBase extends AbstractCommonPage {
 
     public abstract boolean isProductPresent(String name);
 
-    public abstract CartPage clickCartButton();
+    public abstract CartPageBase clickCartButton();
 
     public abstract Map<String, Double> getProductTitlePrices();
 

@@ -5,7 +5,7 @@ import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import mobile.android.CartPage;
+import mobile.common.CartPageBase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -38,7 +38,7 @@ public class CartTest extends AbstractMobileTest implements IAbstractTest {
             productsPage.addProductToCartByName(productName);
         }
 
-        CartPage cartPage = productsPage.clickCartButton();
+        CartPageBase cartPage = productsPage.clickCartButton();
         assertTrue(cartPage.isOpen(), "Cart page is not open");
 
         for (String productName : productNamesArray) {
