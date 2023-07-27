@@ -1,39 +1,48 @@
 package mobile;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
-import com.zebrunner.carina.utils.mobile.IMobileUtils.Direction;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import mobile.android.CartPage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CartTest extends AbstractMobileTest implements IAbstractTest {
 
-    @DataProvider(name = "ProductsList")
+    @DataProvider(name = "ProductNamesArray")
     public Object[][] dataProviderProducts() {
         return new Object[][]{
             {"Sauce Labs Backpack"},
-            {"Sauce Labs Backpack", "Sauce Labs Bike Light"},
             {"Sauce Labs Backpack", "Sauce Labs Bolt T-Shirt"},
             {"Sauce Labs Backpack", "Sauce Labs Bolt T-Shirt", "Sauce Labs Onesie"},
         };
     }
 
-    @Test(dataProvider = "ProductsList")
+    @Test(dataProvider = "ProductNamesArray")
     @MethodOwner(owner = "jinocencio-solvd")
-    public void testCartCount(String[] productList) {
-        for (int i = 0; i < productList.length; i++) {
-            String productName = productList[i];
-            ExtendedWebElement elem;
-            boolean found = false;
-            while(!found) {
-                elem = productsPage.getAddToCartButtonByName(productName);
-                found = productsPage.swipe(elem, Direction.UP);
-            }
+    public void testCartCount(String[] productNamesArray) {
+        for (String productName : productNamesArray) {
+            assertTrue(productsPage.isProductPresent(productName), "Product was not found.");
             productsPage.addProductToCartByName(productName);
-            assertEquals(productsPage.getCartCount(), i ,"Cart count is incorrect");
+        }
+        assertEquals(productsPage.getCartCount(), productNamesArray.length,
+            "Cart count is incorrect");
+    }
+
+    @Test(dataProvider = "ProductNamesArray")
+    @MethodOwner(owner = "jinocencio-solvd")
+    public void testCartHasProducts(String[] productNamesArray) {
+        for (String productName : productNamesArray) {
+            productsPage.addProductToCartByName(productName);
+        }
+
+        CartPage cartPage = productsPage.clickCartButton();
+        assertTrue(cartPage.isOpen(), "Cart page is not open");
+
+        for (String productName : productNamesArray) {
+            assertTrue(cartPage.isProductPresent(productName));
         }
     }
 

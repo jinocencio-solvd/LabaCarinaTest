@@ -4,7 +4,6 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import mobile.common.LoginPageBase;
 import mobile.common.ProductsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = ProductsPageBase.class)
 public class ProductsPage extends ProductsPageBase implements IMobileUtils {
 
-    @FindBy(xpath = "//android.widget.EditText[@content-desc='test-Username']")
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Cart']")
     private ExtendedWebElement cartButton;
 
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Modal Selector Button']")
@@ -39,12 +38,13 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
         return filterButton.isElementPresent();
     }
 
-    public void addProductToCartByName(String name){
+    public void addProductToCartByName(String name) {
+        swipe(addToCartButton.format(name), Direction.UP);
         addToCartButton.format(name).click();
     }
 
-    public ExtendedWebElement getAddToCartButtonByName(String name){
-        return addToCartButton.format(name);
+    public boolean isProductPresent(String name) {
+        return swipe(addToCartButton.format(name), Direction.UP);
     }
 
     public int getCartCount() {
@@ -52,5 +52,9 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
         return Integer.parseInt(strCount);
     }
 
+    public CartPage clickCartButton() {
+        cartButton.click();
+        return new CartPage(getDriver());
+    }
 
 }
