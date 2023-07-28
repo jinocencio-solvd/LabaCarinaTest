@@ -15,23 +15,23 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public boolean isOpened() {
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
+    }
+
+    @Override
     public void typeUsername(String username) {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public void typePassword(String password) {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
-    }
-
-    @Override
-    public boolean isOpen() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public ProductsPageBase clickLoginButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
 }

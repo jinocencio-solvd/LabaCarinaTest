@@ -2,7 +2,6 @@ package mobile.android;
 
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = ProductsPageBase.class)
-public class ProductsPage extends ProductsPageBase implements IMobileUtils {
+public class ProductsPage extends ProductsPageBase {
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc='test-Item title']")
     protected ExtendedWebElement productTitles;
@@ -47,19 +46,19 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isOpen() {
+    public boolean isOpened() {
         return sortButton.isElementPresent();
     }
 
     @Override
     public void addProductToCartByName(String name) {
-        swipe(addToCartButton.format(name), Direction.UP);
+        swipe(addToCartButton.format(name), MAX_SWIPES);
         addToCartButton.format(name).click();
     }
 
     @Override
     public boolean isProductPresent(String name) {
-        return swipe(addToCartButton.format(name), Direction.UP);
+        return swipe(addToCartButton.format(name), MAX_SWIPES);
     }
 
     @Override
@@ -102,10 +101,10 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
     public Double getProductPrice(String productTitle) {
         boolean found = false;
         while (!found) {
-            found = swipe(productPrice.format(productTitle));
+            found = swipe(productPrice.format(productTitle), 1);
         }
-        String ret = productPrice.format(productTitle).getText().replace("$", "");
-        return Double.parseDouble(ret);
+        String extractPrice = productPrice.format(productTitle).getText().replace("$", "");
+        return Double.parseDouble(extractPrice);
     }
 
 }

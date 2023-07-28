@@ -12,8 +12,6 @@ public abstract class LoginPageBase extends AbstractCommonPage {
 
     public abstract void typePassword(String password);
 
-    public abstract boolean isOpen();
-
     public abstract ProductsPageBase clickLoginButton();
 
 }

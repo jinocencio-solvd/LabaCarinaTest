@@ -17,43 +17,43 @@ public class ProductsPage extends ProductsPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isOpen() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+    public boolean isOpened() {
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public void addProductToCartByName(String name) {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public boolean isProductPresent(String name) {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public int getCartCount() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public CartPageBase clickCartButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public SortProductsPageBase clickSortButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public Map<String, Double> getProductTitlePrices() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public Double getProductPrice(String productTitle) {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
 }

@@ -14,23 +14,28 @@ public class SortProductsPage extends SortProductsPageBase {
     }
 
     @Override
+    public boolean isOpened() {
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
+    }
+
+    @Override
     public ProductsPageBase clickSortNameAtoZButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public ProductsPageBase clickSortNameZtoAButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public ProductsPageBase clickSortPriceLowToHighButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public ProductsPageBase clickSortPriceHighToLowButton() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
 }

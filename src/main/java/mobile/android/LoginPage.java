@@ -2,7 +2,6 @@ package mobile.android;
 
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.utils.factory.DeviceType.Type;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import mobile.common.LoginPageBase;
 import mobile.common.ProductsPageBase;
@@ -10,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
-public class LoginPage extends LoginPageBase implements IMobileUtils {
+public class LoginPage extends LoginPageBase {
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='test-Username']")
     private ExtendedWebElement usernameField;
@@ -26,6 +25,11 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public boolean isOpened() {
+        return loginButton.isElementPresent();
+    }
+
+    @Override
     public void typeUsername(String username) {
         usernameField.type(username);
     }
@@ -33,11 +37,6 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @Override
     public void typePassword(String password) {
         passwordField.type(password);
-    }
-
-    @Override
-    public boolean isOpen() {
-        return loginButton.isElementPresent();
     }
 
     @Override

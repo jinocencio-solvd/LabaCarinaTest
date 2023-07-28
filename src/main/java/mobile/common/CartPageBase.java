@@ -8,8 +8,6 @@ public abstract class CartPageBase extends AbstractCommonPage {
         super(driver);
     }
 
-    public abstract boolean isOpen();
-
     public abstract boolean isProductPresent(String name);
 
 }

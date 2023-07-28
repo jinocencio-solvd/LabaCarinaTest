@@ -14,13 +14,13 @@ public class CartPage extends CartPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isOpen() {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+    public boolean isOpened() {
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
     @Override
     public boolean isProductPresent(String name) {
-        throw new UnsupportedOperationException(unsupportedIosOperation);
+        throw new UnsupportedOperationException(UNSUPPORTED_IOS_OPERATION);
     }
 
 }

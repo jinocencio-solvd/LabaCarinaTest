@@ -23,8 +23,16 @@ public class SortProductsPage extends SortProductsPageBase {
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Price (high to low)')]")
     private ExtendedWebElement sortPriceHighToLowButton;
 
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Cancel')]")
+    private ExtendedWebElement cancelButton;
+
     public SortProductsPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public boolean isOpened() {
+        return cancelButton.isElementPresent();
     }
 
     @Override

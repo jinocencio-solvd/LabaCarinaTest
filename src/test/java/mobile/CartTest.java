@@ -6,10 +6,12 @@ import static org.testng.Assert.assertTrue;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import mobile.common.CartPageBase;
+import mobile.common.ProductsPageBase;
+import mobile.utils.MobileAuthUtils;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class CartTest extends AbstractMobileTest implements IAbstractTest {
+public class CartTest implements IAbstractTest {
 
     @DataProvider(name = "ProductNamesArray")
     public Object[][] dataProviderProducts() {
@@ -23,6 +25,7 @@ public class CartTest extends AbstractMobileTest implements IAbstractTest {
     @Test(dataProvider = "ProductNamesArray")
     @MethodOwner(owner = "jinocencio-solvd")
     public void testCartCount(String[] productNamesArray) {
+        ProductsPageBase productsPage = new MobileAuthUtils().loginStandard();
         for (String productName : productNamesArray) {
             assertTrue(productsPage.isProductPresent(productName), "Product was not found.");
             productsPage.addProductToCartByName(productName);
@@ -34,12 +37,13 @@ public class CartTest extends AbstractMobileTest implements IAbstractTest {
     @Test(dataProvider = "ProductNamesArray")
     @MethodOwner(owner = "jinocencio-solvd")
     public void testCartHasProducts(String[] productNamesArray) {
+        ProductsPageBase productsPage = new MobileAuthUtils().loginStandard();
         for (String productName : productNamesArray) {
             productsPage.addProductToCartByName(productName);
         }
 
         CartPageBase cartPage = productsPage.clickCartButton();
-        assertTrue(cartPage.isOpen(), "Cart page is not open");
+        assertTrue(cartPage.isOpened(), "Cart page is not open");
 
         for (String productName : productNamesArray) {
             assertTrue(cartPage.isProductPresent(productName));
