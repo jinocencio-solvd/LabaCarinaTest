@@ -2,13 +2,12 @@ package mobile;
 
 import static org.testng.Assert.assertTrue;
 
-import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.utils.R;
 import mobile.common.LoginPageBase;
 import mobile.common.ProductsPageBase;
 import org.testng.annotations.Test;
 
-public class AuthorizationTest implements IAbstractTest {
+public class AuthorizationTest extends AbstractMobileTest {
 
     @Test
     public void testLogin() {
