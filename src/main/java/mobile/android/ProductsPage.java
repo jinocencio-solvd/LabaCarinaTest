@@ -17,7 +17,7 @@ import org.openqa.selenium.support.FindBy;
 public class ProductsPage extends ProductsPageBase {
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc='test-Item title']")
-    protected ExtendedWebElement productTitles;
+    protected List<ExtendedWebElement> productTitles;
 
     @FindBy(xpath = "//android.widget.TextView[@text='%s']"
         + "/following-sibling::android.widget.TextView[@content-desc='test-Price']")
@@ -85,7 +85,7 @@ public class ProductsPage extends ProductsPageBase {
         boolean found = false;
         while (!found) {
             found = swipe(termsOfService, 1);
-            List<String> productTitlesDisplayed = productTitles.formatToList().stream()
+            List<String> productTitlesDisplayed = productTitles.stream()
                 .map(ExtendedWebElement::getText)
                 .collect(Collectors.toList());
             for (String productTitle : productTitlesDisplayed) {
