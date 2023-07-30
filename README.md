@@ -28,7 +28,7 @@ stable and reliable.
 Requirements:
 1. Create and automate test cases for Android application.
 
-**Tested Web App:** [Sauce Labs Demo App](https://github.com/saucelabs/sample-app-mobile)
+**Tested Android App:** [Sauce Labs Demo App](https://github.com/saucelabs/sample-app-mobile)
 
 | Feature Owner (Author) | # | Name                    | Preconditions                                         | Step # | Description                                | Expected Result                               |
 |:-----------------------|:---:|:--------------------------|:----------------------------------------|:------:|:-------------------------------------|:------------------------------------------|
