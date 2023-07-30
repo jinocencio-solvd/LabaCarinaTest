@@ -1,4 +1,4 @@
-name: Carina Automation Tests
+name: Java CI with Maven
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   setup-jdk:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -21,48 +21,31 @@ jobs:
       - name: Set JAVA_HOME
         run: echo "JAVA_HOME=${{ steps.setup-java.outputs.java-home }}" >> $GITHUB_ENV
 
-  maven-build:
-    runs-on: ubuntu-latest
+  run-api-automation:
+    runs-on: macos-latest
     needs: setup-jdk
     steps:
       - uses: actions/checkout@v3
-      - name: Cache Maven artifacts
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-      - name: Maven Clean and Compile
-        run: mvn -B clean validate compile --file pom.xml
-        env:
-          JAVA_HOME: ${{ needs.setup-jdk.outputs.java-home }}
-
-  run-api-automation:
-    runs-on: ubuntu-latest
-    needs: maven-build
-    steps:
-      - uses: actions/checkout@v3
       - name: Web Automation with Maven
-        run: mvn -B test -Papi --file pom.xml
+        run: mvn -B clean validate test -Papi --file pom.xml
         env:
-          JAVA_HOME: ${{ needs.setup-jdk.outputs.java-home }}
+          JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
 
   run-web-automation:
     runs-on: ubuntu-latest
-    needs: maven-build
+    needs: run-api-automation
     steps:
       - uses: actions/checkout@v3
       - name: Run Selenium Server
         run: nohup java -jar $SELENIUM_JAR_PATH standalone &
       - name: Web Automation with Maven
-        run: mvn -B test -Pweb --file pom.xml
+        run: mvn -B clean validate test -Pweb --file pom.xml
         env:
-          JAVA_HOME: ${{ needs.setup-jdk.outputs.java-home }}
+          JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
 
   run-android-automation:
-    runs-on: ubuntu-latest
-    needs: maven-build
+    runs-on: macos-latest
+    needs: run-web-automation
     steps:
       - uses: actions/checkout@v3
       - name: Setup Appium
@@ -73,9 +56,9 @@ jobs:
           appium &
       - name: Run Appium Android Emulator and Tests
         env:
-          JAVA_HOME: ${{ needs.setup-jdk.outputs.java-home }}
+          JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
           avd-name: Pixel_3_API_28
           api-level: 28
-          script: mvn -B test -Pmobile --file pom.xml
+          script: mvn -B clean validate test -Pmobile --file pom.xml
