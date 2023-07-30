@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Web Automation with Maven
-        run: mvn -B clean validate test -Papi --file pom.xml
+        run: mvn -B validate test -Papi --file pom.xml
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
 
@@ -39,7 +39,7 @@ jobs:
       - name: Run Selenium Server
         run: nohup java -jar $SELENIUM_JAR_PATH standalone &
       - name: Web Automation with Maven
-        run: mvn -B clean validate test -Pweb --file pom.xml
+        run: mvn -B validate test -Pweb --file pom.xml
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
 
@@ -61,4 +61,4 @@ jobs:
         with:
           avd-name: Pixel_3_API_28
           api-level: 28
-          script: mvn -B clean validate test -Pmobile --file pom.xml
+          script: mvn -B validate test -Pmobile --file pom.xml
