@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +21,7 @@ public class ProductsPageTest extends AbstractMobileTest {
         SortProductsPageBase sortedProductsPage = productsPage.clickSortButton();
         assertTrue(sortedProductsPage.isOpened(), "Sort products page is not opened");
         productsPage = sortedProductsPage.clickSortNameAtoZButton();
-        List<String> productTitles = productsPage.getProductTitlePrices().keySet().stream()
-            .toList();
+        List<String> productTitles = new ArrayList<>(productsPage.getProductTitlePrices().keySet());
         List<String> sorted = List.copyOf(productTitles).stream()
             .sorted()
             .collect(Collectors.toList());
@@ -37,8 +37,7 @@ public class ProductsPageTest extends AbstractMobileTest {
         SortProductsPageBase sortedProductsPage = productsPage.clickSortButton();
         assertTrue(sortedProductsPage.isOpened(), "Sort products page is not opened");
         productsPage = sortedProductsPage.clickSortNameZtoAButton();
-        List<String> productTitles = productsPage.getProductTitlePrices().keySet().stream()
-            .toList();
+        List<String> productTitles = new ArrayList<>(productsPage.getProductTitlePrices().keySet());
         List<String> reverseSorted = List.copyOf(productTitles).stream()
             .sorted(Comparator.reverseOrder())
             .collect(Collectors.toList());
@@ -53,8 +52,7 @@ public class ProductsPageTest extends AbstractMobileTest {
         SortProductsPageBase sortedProductsPage = productsPage.clickSortButton();
         assertTrue(sortedProductsPage.isOpened(), "Sort products page is not opened");
         productsPage = sortedProductsPage.clickSortPriceLowToHighButton();
-        List<Double> productPrices = productsPage.getProductTitlePrices().values().stream()
-            .toList();
+        List<Double> productPrices = new ArrayList<>(productsPage.getProductTitlePrices().values());
         List<Double> sortedPrices = List.copyOf(productPrices).stream()
             .sorted()
             .collect(Collectors.toList());
@@ -69,8 +67,7 @@ public class ProductsPageTest extends AbstractMobileTest {
         SortProductsPageBase sortedProductsPage = productsPage.clickSortButton();
         assertTrue(sortedProductsPage.isOpened(), "Sort products page is not opened");
         productsPage = sortedProductsPage.clickSortPriceHighToLowButton();
-        List<Double> productPrices = productsPage.getProductTitlePrices().values().stream()
-            .toList();
+        List<Double> productPrices = new ArrayList<>(productsPage.getProductTitlePrices().values());
         List<Double> sortedPrices = List.copyOf(productPrices).stream()
             .sorted(Comparator.reverseOrder())
             .collect(Collectors.toList());
