@@ -26,8 +26,8 @@ jobs:
     needs: setup-jdk
     steps:
       - uses: actions/checkout@v3
-      - name: Web Automation with Maven
-        run: mvn -B validate test -Papi --file pom.xml
+      - name: API Test Automations with Maven
+        run: mvn -B validate test -Denv=API -Dsuite=api --file pom.xml
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
 
@@ -38,8 +38,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Selenium Server
         run: nohup java -jar $SELENIUM_JAR_PATH standalone &
-      - name: Web Automation with Maven
-        run: mvn -B validate test -Pweb --file pom.xml
+      - name: Web Test Automations with Maven
+        run: mvn -B validate test -Denv=WEB -Dsuite=web --file pom.xml
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
 
@@ -54,11 +54,11 @@ jobs:
           appium -v
           appium driver install uiautomator2
           appium &
-      - name: Run Appium Android Emulator and Tests
+      - name: Run Appium Android Emulator and Test Automations with Maven
         env:
           JAVA_HOME: ${{ steps.setup-java.outputs.java-home }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
           avd-name: Pixel_3_API_28
           api-level: 28
-          script: mvn -B validate test -Pmobile --file pom.xml
+          script: mvn -B validate test -Denv=ANDROID -Dsuite=android --file pom.xml
