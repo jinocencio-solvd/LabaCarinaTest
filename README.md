@@ -85,6 +85,7 @@ Requirements:
 |                        |   |                           |                                         | 6      | Select cart button on nav bar         | User is redirected to the cart page       |
 |                        |   |                           |                                         | 7      | Cart page is loaded                 | Selected product is displayed on cart page |
 
+## Iter-1: Carina-API
 
 ### Task
 
